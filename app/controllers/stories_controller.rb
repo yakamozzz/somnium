@@ -9,6 +9,7 @@ class StoriesController < ApplicationController
   	end
 
 	def new
+    @story = Story.new
 	end
 
 	def edit
@@ -18,8 +19,11 @@ class StoriesController < ApplicationController
 	def create
  		@story = Story.new(story_params)
  
-  		@story.save
+  	if @story.save
   		redirect_to @story
+    else
+      render 'new'
+    end
 	end
  
 	def update
@@ -27,6 +31,13 @@ class StoriesController < ApplicationController
   		@story.update(story_params)
   		redirect_to @story
 	end
+
+  def destroy
+    @story = Story.find(params[:id])
+    @story.destroy
+ 
+    redirect_to stories_path
+  end
 
 
 	private
