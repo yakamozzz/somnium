@@ -1,4 +1,4 @@
 class Story < ApplicationRecord
-	 validates :title, :text, presence: true
+	 validates :text, presence: true
                  
 end
